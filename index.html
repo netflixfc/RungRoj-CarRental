@@ -464,5 +464,15 @@
     <script src="./js/homeScript.js"></script>
     <script type="module" src="NavBar/navBar.js"></script>
     <script src="Footer/Footer.js"></script>
+    <script>
+      const swiper = new Swiper('.mySwiper', {
+        slidesPerView: 1,
+        spaceBetween: 10,
+        pagination: {
+          el: '.swiper-pagination',
+          clickable: true,
+        },
+      });
+    </script>
   </body>
 </html>
