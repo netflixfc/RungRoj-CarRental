@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="th">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="../css/style.css">
     <!-- details CSS File -->
     <link rel="stylesheet" href="css/details.css">
-    <title>Car Details</title>
+    <title>รายละเอียดรถ</title>
 </head>
 <body>
     <!-- Theme Toggle Button -->
@@ -31,7 +31,13 @@
         <div class="container" id="carDetailsContainer">
             <h1 class="text-center mb-3">รายละเอียดรถยนต์</h1>
             <button class="btn btn-primary">จองรถ</button>
+            <a href="details.html?carId=1" class="btn w-100 custom-btn fw-bold">ดูรายละเอียด</a>
             <!-- Car details (details.js) -->
+            <div id="carDetails">
+                <h1 id="carName">ชื่อรถ</h1>
+                <p>ปี: <span id="carYear"></span></p>
+                <p>ราคา: <span id="carPrice"></span></p>
+            </div>
         </div>
 
     </main>
@@ -49,7 +55,31 @@
     <script src="../js/homeScript.js"></script>
     <script type="module" src="../carsList/JS/carsListing.js"></script>
     <script src="js/carDetails.js"></script>
-<script type="module" src="../NavBar/navBar.js"></script>
-<script src="../Footer/Footer.js"></script>
+    <script type="module" src="../NavBar/navBar.js"></script>
+    <script src="../Footer/Footer.js"></script>
+    <script>
+        // ดึงพารามิเตอร์จาก URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const carId = urlParams.get('carId');
+
+        // ตัวอย่างข้อมูลรถ
+        const cars = [
+            { id: 1, name: 'Toyota Hilux', year: 2020, price: 700 },
+            { id: 2, name: 'Ford Mustang', year: 2021, price: 1800 },
+            { id: 3, name: 'Jeep Wrangler', year: 2022, price: 1300 },
+        ];
+
+        // ค้นหารถที่ตรงกับ carId
+        const car = cars.find(c => c.id == carId);
+
+        // แสดงข้อมูลรถในหน้า
+        if (car) {
+            document.getElementById('carName').textContent = car.name;
+            document.getElementById('carYear').textContent = car.year;
+            document.getElementById('carPrice').textContent = `฿${car.price}`;
+        } else {
+            document.getElementById('carDetails').textContent = 'ไม่พบข้อมูลรถ';
+        }
+    </script>
 </body>
 </html>
